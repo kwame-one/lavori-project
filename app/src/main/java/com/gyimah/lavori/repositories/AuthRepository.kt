@@ -1,6 +1,8 @@
 package com.gyimah.lavori.repositories
 
 import android.app.Application
+import androidx.arch.core.executor.TaskExecutor
+import com.google.android.gms.tasks.TaskExecutors
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -19,7 +21,7 @@ import javax.inject.Singleton
 class AuthRepository @Inject constructor(
     private val firebaseFirestore: FirebaseFirestore,
     private val firebaseAuth: FirebaseAuth,
-    private val application: Application
+    application: Application
 ) {
 
     private lateinit var loginListener: LoginListener
@@ -37,7 +39,7 @@ class AuthRepository @Inject constructor(
 
     fun loginWithEmail(email: String, password: String) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnSuccessListener(application.mainExecutor) { task ->
+            .addOnSuccessListener(TaskExecutors.MAIN_THREAD) { task ->
                 val user = task.user
 
                 if (user != null) {
@@ -59,7 +61,7 @@ class AuthRepository @Inject constructor(
     fun loginWithGoogle(idToken: String) {
         val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(firebaseCredential)
-            .addOnSuccessListener(application.mainExecutor) {
+            .addOnSuccessListener(TaskExecutors.MAIN_THREAD) {
                 val user = it.user
 
                 if (user != null) {

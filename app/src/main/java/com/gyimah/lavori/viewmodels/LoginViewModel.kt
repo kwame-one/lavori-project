@@ -1,5 +1,6 @@
 package com.gyimah.lavori.viewmodels
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,16 +28,20 @@ class LoginViewModel @Inject constructor(
 
     fun loginWithEmail(email: String, password: String) {
 
+        Log.i("LOGIN VIEW MODEL", email)
+        Log.i("LOGIN VIEW MODEL", password)
+
         when {
-            email.trim().isEmpty() -> {
+            email.trim().isBlank() -> {
                 errorState.postValue("Email cannot be empty")
-            }
-            password.trim().isEmpty() -> {
-                errorState.postValue("Password cannot be empty")
             }
             !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
                 errorState.postValue("Email is invalid")
             }
+            password.trim().isBlank() -> {
+                errorState.postValue("Password cannot be empty")
+            }
+
             else -> {
                 authRepository.loginWithEmail(email, password)
             }

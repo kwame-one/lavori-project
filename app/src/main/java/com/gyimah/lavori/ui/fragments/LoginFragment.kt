@@ -2,6 +2,7 @@ package com.gyimah.lavori.ui.fragments
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,7 @@ import javax.inject.Inject
 import kotlin.math.log
 
 @AndroidEntryPoint
-class LoginFragment: Fragment() {
+class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
 
@@ -52,8 +53,8 @@ class LoginFragment: Fragment() {
 
         binding.continueBtn.setOnClickListener {
             loginViewModel.loginWithEmail(
-                email = binding.email.text.toString(),
-                password = binding.password.text.toString()
+                email = binding.emailLayout.editText?.text.toString(),
+                password = binding.passwordLayout.editText?.text.toString()
             )
         }
 
@@ -63,27 +64,33 @@ class LoginFragment: Fragment() {
 
         }
 
-        loginViewModel.accountState.observe(viewLifecycleOwner) {
-            if (it == 0) {
+        loginViewModel.accountState.observe(requireActivity()) {
+            if (it != null && it == 0) {
                 //redirect to account page
 
-                loginViewModel.accountState.value = 1
+                loginViewModel.accountState.value = null
             }
         }
 
+        loginViewModel.errorState.observe(requireActivity()) {
 
-        loginViewModel.successState.observe(viewLifecycleOwner) {
-            if (it) {
+            if (it != null) {
+                Toast.makeText(requireView().context, it, Toast.LENGTH_SHORT).show()
 
-            }else {
-                val errorMessage = loginViewModel.errorState.value
-
-                if (errorMessage != null) {
-                    Toast.makeText(requireView().context, errorMessage, Toast.LENGTH_SHORT).show()
-                }
+                loginViewModel.errorState.value = null
             }
 
-            loginViewModel.successState.value = null
+//
+        }
+
+        loginViewModel.successState.observe(requireActivity()) {
+            if (it != null && it) {
+
+                loginViewModel.successState.value = null
+
+            }
+
+
         }
     }
 
@@ -106,7 +113,8 @@ class LoginFragment: Fragment() {
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Toast.makeText(
-                    requireView().context, "Error signing in with google", Toast.LENGTH_SHORT).show()
+                    requireView().context, "Error signing in with google", Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
