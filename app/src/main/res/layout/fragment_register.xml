@@ -10,7 +10,7 @@
     <ImageView
         android:layout_marginTop="@dimen/margin_20"
         android:layout_marginBottom="@dimen/margin_20"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
@@ -51,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
+        android:id="@+id/email_layout"
         android:layout_marginBottom="@dimen/margin_15">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -67,6 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="password_toggle"
+        android:id="@+id/password_layout"
         android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText

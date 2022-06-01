@@ -2,5 +2,8 @@ package com.gyimah.lavori.listeners
 
 interface AccountListener {
 
-    fun onAccountNotFound();
+    fun onAccountSetupSuccess()
+
+    fun onAccountSetupFailure(message: String)
+
 }

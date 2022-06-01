@@ -21,4 +21,10 @@
     <string name="or_txt">or</string>
     <string name="google">Google</string>
     <string name="google_web_client_id">1082020950479-9f7hjhte9u6gngjlcjc7pvgsmkrktobu.apps.googleusercontent.com</string>
+    <string name="loading">Loading</string>
+    <string name="account_setup">Setup your Account</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="summary">Summary</string>
+    <string name="image">Image</string>
 </resources>
