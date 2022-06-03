@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
 import com.gyimah.lavori.R
 import com.gyimah.lavori.listeners.ItemClickListener
+import com.gyimah.lavori.listeners.PostLikeShareListener
 import com.gyimah.lavori.models.Post
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
@@ -19,6 +20,8 @@ import javax.inject.Inject
 class PostAdapter @Inject constructor(private val application: Application) : Adapter<PostAdapter.PostViewHolder>() {
 
     private lateinit var listener: ItemClickListener
+
+    private lateinit var postLikeShareListener: PostLikeShareListener
 
     private val posts: MutableList<Post> = mutableListOf();
 
@@ -32,6 +35,10 @@ class PostAdapter @Inject constructor(private val application: Application) : Ad
 
     fun setItemClickListener(listener: ItemClickListener) {
         this.listener = listener
+    }
+
+    fun setPostLikeShareListener(postLikeShareListener: PostLikeShareListener) {
+        this.postLikeShareListener = postLikeShareListener
     }
 
 
@@ -68,6 +75,14 @@ class PostAdapter @Inject constructor(private val application: Application) : Ad
             listener.onItemClicked(it, position)
         }
 
+        holder.like.setOnClickListener {
+            postLikeShareListener.onLikedClicked(position)
+        }
+
+        holder.share.setOnClickListener {
+            postLikeShareListener.onShareClicked(position)
+        }
+
 
 
     }
@@ -86,6 +101,7 @@ class PostAdapter @Inject constructor(private val application: Application) : Ad
         val like: RelativeLayout = itemView.findViewById(R.id.like_layout)
         val comment: RelativeLayout = itemView.findViewById(R.id.comment_layout)
         val share: RelativeLayout = itemView.findViewById(R.id.share_layout)
+
 
 
     }

@@ -14,13 +14,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gyimah.lavori.adapters.PostAdapter
 import com.gyimah.lavori.databinding.FragmentHomeBinding
 import com.gyimah.lavori.databinding.FragmentPostBinding
+import com.gyimah.lavori.listeners.ItemClickListener
+import com.gyimah.lavori.listeners.PostLikeShareListener
 import com.gyimah.lavori.viewmodels.HomeViewModel
 import com.gyimah.lavori.viewmodels.PostViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ItemClickListener, PostLikeShareListener {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -52,6 +54,9 @@ class HomeFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager =
             LinearLayoutManager(requireView().context, LinearLayoutManager.VERTICAL, false)
+
+        postAdapter.setItemClickListener(this)
+        postAdapter.setPostLikeShareListener(this)
 
         recyclerView.adapter = postAdapter
 
@@ -85,5 +90,17 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClicked(view: View, position: Int) {
+        Toast.makeText(requireContext().applicationContext, "Item clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onShareClicked(position: Int) {
+        Toast.makeText(requireContext().applicationContext, "share clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onLikedClicked(position: Int) {
+        Toast.makeText(requireContext().applicationContext, "liked clicked", Toast.LENGTH_SHORT).show()
     }
 }
