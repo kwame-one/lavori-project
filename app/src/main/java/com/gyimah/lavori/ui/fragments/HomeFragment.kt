@@ -83,7 +83,7 @@ class HomeFragment : Fragment(), ItemClickListener, PostLikeShareListener {
         }
 
         binding.refresh.setOnRefreshListener {
-            postAdapter.getPosts()
+            postViewModel.getPosts()
         }
     }
 

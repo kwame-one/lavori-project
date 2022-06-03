@@ -4,13 +4,14 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="2dp"
-    android:layout_marginBottom="@dimen/margin_5"
+    android:layout_marginBottom="@dimen/margin_15"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:paddingBottom="@dimen/padding_5"
         android:paddingStart="@dimen/padding_10"
         android:paddingEnd="@dimen/padding_10"
+        android:paddingTop="@dimen/padding_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -21,10 +22,10 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/poster_image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_people"
+                android:src="@drawable/person"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="0dp" />
 
@@ -75,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_people"
+            android:src="@drawable/placeholder"
             android:id="@+id/image"/>
 
         <View

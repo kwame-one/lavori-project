@@ -57,7 +57,8 @@ class PostAdapter @Inject constructor(private val application: Application) : Ad
             holder.image.visibility = View.GONE
 
         }else {
-            Picasso.get().load(post.imageUrl).into(holder.image)
+
+            Picasso.get().load(post.imageUrl).placeholder(R.drawable.placeholder).into(holder.image)
             holder.image.visibility = View.VISIBLE
         }
 

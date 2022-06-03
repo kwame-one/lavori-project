@@ -31,8 +31,8 @@ object FirebaseModule {
     }
 
     @Provides
-    fun provideFirebaseUser(auth: FirebaseAuth): FirebaseUser? {
-        return auth.currentUser
+    fun provideFirebaseUser(auth: FirebaseAuth): FirebaseUser {
+        return auth.currentUser!!
     }
 
     @Provides
