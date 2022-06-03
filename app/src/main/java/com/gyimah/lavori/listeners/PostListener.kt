@@ -7,4 +7,8 @@ interface PostListener {
     fun onPostsRetrieved(posts: MutableList<Post>)
 
     fun onPostsError(message: String)
+
+    fun onAddPostSuccess();
+
+    fun onAddPostFailure(message: String)
 }

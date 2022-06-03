@@ -27,4 +27,12 @@
     <string name="lastname">Last Name</string>
     <string name="summary">Summary</string>
     <string name="image">Image</string>
+    <string name="search">Search</string>
+    <string name="share_post">Share Post</string>
+    <string name="post">Post</string>
+    <string name="whats_happening">What\'s happening?</string>
+    <string name="photo">Photo</string>
+    <string name="camera">Camera</string>
+    <string name="post_name">%1$s %2$s</string>
+    <string name="post_content_summary">%1$s …</string>
 </resources>

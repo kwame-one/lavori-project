@@ -64,6 +64,8 @@ class HomeFragment : Fragment() {
             binding.refresh.isRefreshing = false
 
             postAdapter.setPosts(it)
+
+            postAdapter.notifyDataSetChanged()
         }
 
         postViewModel.errorMessageState.observe(requireActivity()) {
